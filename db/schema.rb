@@ -36,11 +36,11 @@ ActiveRecord::Schema.define(version: 2019_11_13_025728) do
   end
 
   create_table "subscriptions", force: :cascade do |t|
-    t.integer "newletter_id"
+    t.integer "newsletter_id"
     t.integer "subscriber_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["newletter_id"], name: "index_subscriptions_on_newletter_id"
+    t.index ["newsletter_id"], name: "index_subscriptions_on_newsletter_id"
     t.index ["subscriber_id"], name: "index_subscriptions_on_subscriber_id"
   end
 
@@ -54,6 +54,6 @@ ActiveRecord::Schema.define(version: 2019_11_13_025728) do
 
   add_foreign_key "emails", "newsletters"
   add_foreign_key "newsletters", "users"
-  add_foreign_key "subscriptions", "newletters"
+  add_foreign_key "subscriptions", "newsletters"
   add_foreign_key "subscriptions", "subscribers"
 end

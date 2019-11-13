@@ -10,7 +10,7 @@ module Mutations
       subscriber = Subscriber.find_by(email: subscriber_email)
 
       subscription = Subscription.new(
-        subscriber_id: subscriber.id,
+        subscriber: subscriber,
         newsletter_id: newsletter_id
         )
 

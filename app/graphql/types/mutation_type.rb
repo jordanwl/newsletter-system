@@ -11,6 +11,7 @@ module Types
     field :destroy_user, mutation: Mutations::DestroyUser
     field :destroy_newsletter, mutation: Mutations::DestroyNewsletter
     field :destroy_email, mutation: Mutations:: DestroyEmail
+    field :destroy_subscription, mutation: Mutations:: DestroySubscription
 
     field :signin_user, mutation: Mutations::SignInUser
   end

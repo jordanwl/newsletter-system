@@ -1,14 +1,16 @@
 module Mutations
   class CreateSubscription < BaseMutation
-    argument :subscriber_id, ID, required: true
+    argument :subscriber_email, String, required: true
     argument :newsletter_id, ID, required: true
 
     type Types::SubscriptionType
 
-    def resolve(subscriber_id: nil, newsletter_id: nil)
+    def resolve(subscriber_email: nil, newsletter_id: nil)
+
+      subscriber = Subscriber.find_by(email: subscriber_email)
 
       subscription = Subscription.new(
-        subscriber_id: subscriber_id,
+        subscriber_id: subscriber.id,
         newsletter_id: newsletter_id
         )
 

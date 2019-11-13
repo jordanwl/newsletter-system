@@ -10,7 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_12_133849) do
+ActiveRecord::Schema.define(version: 2019_11_13_025728) do
+
+  create_table "emails", force: :cascade do |t|
+    t.integer "newsletter_id", null: false
+    t.string "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["newsletter_id"], name: "index_emails_on_newsletter_id"
+  end
+
+  create_table "newsletters", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
+    t.index ["user_id"], name: "index_newsletters_on_user_id"
+  end
+
+  create_table "subscribers", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.integer "newletter_id"
+    t.integer "subscriber_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["newletter_id"], name: "index_subscriptions_on_newletter_id"
+    t.index ["subscriber_id"], name: "index_subscriptions_on_subscriber_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
@@ -20,4 +52,8 @@ ActiveRecord::Schema.define(version: 2019_11_12_133849) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "emails", "newsletters"
+  add_foreign_key "newsletters", "users"
+  add_foreign_key "subscriptions", "newletters"
+  add_foreign_key "subscriptions", "subscribers"
 end

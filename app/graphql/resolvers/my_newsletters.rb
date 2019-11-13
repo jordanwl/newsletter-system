@@ -7,7 +7,7 @@ module Resolvers
     def resolve
       logged_in_check
 
-      newsletters = Newsletter.where(user_id: context[:current_user].id)
+      newsletters = context[:current_user].newsletters
 
       return GraphQL::ExecutionError.new("you have no newsletters") if newsletters.empty?
 

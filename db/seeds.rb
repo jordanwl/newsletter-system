@@ -45,4 +45,22 @@ end
     )
 end
 
+20.times do
+  EmailSent.create!(
+    user_id: User.first.id,
+    email_id: Email.first.id,
+    custom_email: false,
+    created_at: (Date.today - rand(7).days)
+  )
+end
+
+5.times do
+  EmailSent.create!(
+    user_id: User.first.id,
+    email_id: Email.first.id,
+    custom_email: false,
+  )
+  puts "ok"
+end
+
 puts "Database seeded!"

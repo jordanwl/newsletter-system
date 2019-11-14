@@ -51,9 +51,11 @@ module Mutations
         email_sent_counter += 1
       end
 
-      email.times_sent += 1
-
-      email.save!
+      EmailSent.create!(
+        user_id: context[:current_user].id,
+        email_id: email.id,
+        custom_email: false
+        )
 
       @@emails_sent = "#{email_sent_counter} email(s) sent (#{email_recipients.join(', ')})"
     end

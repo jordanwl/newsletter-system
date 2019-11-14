@@ -54,13 +54,58 @@ end
   )
 end
 
+20.times do
+  EmailSent.create!(
+    user_id: User.first.id,
+    email_id: Email.first.id,
+    custom_email: false,
+    created_at: (Date.today - rand(7).days)
+  )
+end
+
+
+20.times do
+  EmailSent.create!(
+    user_id: User.first.id,
+    email_id: User.first.emails[1].id,
+    custom_email: false,
+    created_at: (Date.today - rand(7).days)
+  )
+end
+
+20.times do
+  EmailSent.create!(
+    user_id: User.first.id,
+    email_id: Email.first.id,
+    custom_email: false,
+    created_at: (Date.today - rand(7).weeks)
+  )
+end
+
+20.times do
+  EmailSent.create!(
+    user_id: User.first.id,
+    email_id: Email.first.id,
+    custom_email: false,
+    created_at: (Date.today - rand(7).months)
+  )
+end
+
+20.times do
+  EmailSent.create!(
+    user_id: User.first.id,
+    email_id: Email.first.id,
+    custom_email: false,
+    created_at: (Date.today - rand(7).years)
+  )
+end
+
 5.times do
   EmailSent.create!(
     user_id: User.first.id,
     email_id: Email.first.id,
     custom_email: false,
   )
-  puts "ok"
 end
 
 puts "Database seeded!"

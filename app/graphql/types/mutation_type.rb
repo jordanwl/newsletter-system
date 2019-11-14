@@ -14,5 +14,6 @@ module Types
     field :destroy_subscription, mutation: Mutations:: DestroySubscription
 
     field :signin_user, mutation: Mutations::SignInUser
+    field :send_email, mutation: Mutations::SendEmail
   end
 end

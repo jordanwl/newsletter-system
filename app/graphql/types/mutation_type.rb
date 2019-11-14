@@ -13,6 +13,9 @@ module Types
     field :destroy_email, mutation: Mutations:: DestroyEmail
     field :destroy_subscription, mutation: Mutations:: DestroySubscription
 
+    # update
+    field :edit_email, mutation: Mutations::EditEmail
+
     field :signin_user, mutation: Mutations::SignInUser
     field :send_email, mutation: Mutations::SendEmail
   end

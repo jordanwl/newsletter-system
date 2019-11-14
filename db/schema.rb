@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_13_025728) do
+ActiveRecord::Schema.define(version: 2019_11_14_035739) do
 
   create_table "emails", force: :cascade do |t|
     t.integer "newsletter_id", null: false
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 2019_11_13_025728) do
     t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "unique_url"
   end
 
   create_table "subscriptions", force: :cascade do |t|

@@ -51,6 +51,10 @@ module Mutations
         email_sent_counter += 1
       end
 
+      email.times_sent += 1
+
+      email.save!
+
       @@emails_sent = "#{email_sent_counter} email(s) sent (#{email_recipients.join(', ')})"
     end
 

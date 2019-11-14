@@ -12,7 +12,7 @@ User.destroy_all
     )
 end
 
-9.times do |number|
+50.times do |number|
   Subscriber.create!(
     name: Faker::Name.unique.name,
     email: Faker::Internet.unique.email
@@ -37,10 +37,11 @@ end
   end
 end
 
-9.times do |number|
+50.times do |number|
   Subscription.create!(
-    newsletter_id: (number + 1),
-    subscriber_id: rand(1..9)
+    newsletter_id: rand(1..9),
+    subscriber_id: (number + 1),
+    created_at: Date.today - rand(7).days
     )
 end
 

@@ -1,15 +1,16 @@
 module Mutations
   class CreateSubscriber < BaseMutation
-    argument :name, String, required: true
-    argument :email, String, required: true
+    argument :subscriber_args, Types::SubscriberArgs, required: true
 
     type Types::SubscriberType
 
-    def resolve(name: name, email: email)
+    def resolve(subscriber_args: nil)
       Subscriber.create!(
-        name: name,
-        email: email
+        subscriber_args.to_h
         )
+
+    rescue ActiveRecord::RecordInvalid => e
+      GraphQL::ExecutionError.new("Invalid input: #{e.record.errors.full_messages.join(', ')}")
     end
   end
 end

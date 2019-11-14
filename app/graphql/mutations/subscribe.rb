@@ -1,5 +1,5 @@
 module Mutations
-  class CreateSubscription < BaseMutation
+  class Subscribe < BaseMutation
     argument :subscriber_email, String, required: true
     argument :newsletter_id, ID, required: true
 

@@ -5,7 +5,7 @@ module Mutations
     type Types::UserType
 
     def resolve(user_args: nil)
-      User.create!(
+      context[:current_user].update!(
         user_args.to_h
       )
 

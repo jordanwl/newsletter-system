@@ -3,7 +3,7 @@ module Mutations
     argument :newsletter_name, String, required: true
     argument :unique_url, String, required: true
 
-    type Types::SubscriberType
+    type Types::SubscriptionType
 
     def resolve(newsletter_name: nil, unique_url: nil)
       subscriber = Subscriber.find_by(

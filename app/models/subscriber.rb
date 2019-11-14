@@ -5,7 +5,7 @@ class Subscriber < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   validates :name, presence: true
 
-  before_save :generate_url
+  before_create :generate_url
 
   def generate_url
     self.unique_url = "newsletters.com/#{('a'..'z').to_a.shuffle[0,5].join}"

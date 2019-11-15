@@ -57,7 +57,7 @@ end
 20.times do
   EmailSent.create!(
     user_id: User.first.id,
-    email_id: Email.first.id,
+    email_id: User.first.emails[1].id,
     custom_email: false,
     created_at: (Date.today - rand(7).days)
   )
@@ -67,8 +67,7 @@ end
 20.times do
   EmailSent.create!(
     user_id: User.first.id,
-    email_id: User.first.emails[1].id,
-    custom_email: false,
+    custom_email: true,
     created_at: (Date.today - rand(7).days)
   )
 end

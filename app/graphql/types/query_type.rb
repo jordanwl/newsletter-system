@@ -5,6 +5,7 @@ module Types
     field :my_emails, resolver: Resolvers::MyEmails
 
     field :subscriber_count_stats, resolver: Resolvers::SubscriberCountStats
+    field :custom_email_sent_stats, resolver: Resolvers::CustomEmailSentStats
     field :emails_sent_stats, resolver: Resolvers::EmailsSentStats
   end
 end

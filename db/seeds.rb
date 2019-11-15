@@ -1,9 +1,3 @@
-Email.destroy_all
-Subscriber.destroy_all
-Subscription.destroy_all
-Newsletter.destroy_all
-User.destroy_all
-
 3.times do |number|
   User.create!(
     username: "jordan#{number}",
@@ -37,79 +31,43 @@ end
   end
 end
 
-50.times do |number|
-  Subscription.create!(
-    newsletter_id: rand(1..9),
-    subscriber_id: (number + 1),
-    created_at: Date.today - rand(7).days
-    )
+# generates subscriptions
+Newsletter.all.each do |newsletter|
+  50.times do |number|
+    Subscription.create!(
+      newsletter_id: newsletter.id,
+      subscriber_id: (number + 1),
+      created_at: rand(7.years.ago..Time.now)
+      )
+  end
 end
 
-# generates 20 emailsent (days)
-20.times do
+# generates 1000 emailsent
+1000.times do
   EmailSent.create!(
     user_id: User.first.id,
     email_id: Email.first.id,
     custom_email: false,
-    created_at: (Date.today - rand(7).days)
+    created_at: rand(7.years.ago..Time.now)
   )
 end
 
-# generates 20 emailsent for 2nd newsletter (days)
-20.times do
+# generates 1000 emailsent for 2nd newsletter
+100.times do
   EmailSent.create!(
     user_id: User.first.id,
     email_id: User.first.emails[1].id,
     custom_email: false,
-    created_at: (Date.today - rand(7).days)
+    created_at: rand(7.years.ago..Time.now)
   )
 end
 
-# generates 20 emailsent custom email (days)
-20.times do
+# generates 1000 emailsent custom email
+100.times do
   EmailSent.create!(
     user_id: User.first.id,
     custom_email: true,
-    created_at: (Date.today - rand(7).days)
-  )
-end
-
-# generates 20 emailsent(weeks)
-20.times do
-  EmailSent.create!(
-    user_id: User.first.id,
-    email_id: Email.first.id,
-    custom_email: false,
-    created_at: (Date.today - rand(7).weeks)
-  )
-end
-
-# generates 20 emailsent (month)
-20.times do
-  EmailSent.create!(
-    user_id: User.first.id,
-    email_id: Email.first.id,
-    custom_email: false,
-    created_at: (Date.today - rand(7).months)
-  )
-end
-
-# generates 20 emailsent(year)
-20.times do
-  EmailSent.create!(
-    user_id: User.first.id,
-    email_id: Email.first.id,
-    custom_email: false,
-    created_at: (Date.today - rand(7).years)
-  )
-end
-
-# generates 5 emailsent (today)
-5.times do
-  EmailSent.create!(
-    user_id: User.first.id,
-    email_id: Email.first.id,
-    custom_email: false,
+    created_at: rand(7.years.ago..Time.now)
   )
 end
 

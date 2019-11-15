@@ -48,7 +48,7 @@ module Resolvers
             EmailSent.where(created_at: date_range, user_id: context[:current_user].id, email_id: email.id).group_by_month(:created_at).count
           end
         when "YEARS"
-          date_range = ((Date.today - 7.days)..Date.today.end_of_day)
+          date_range = ((Date.today - 7.years)..Date.today.end_of_day)
 
           emails.each do |email|
             emails_sent_stats[email.id] =

@@ -8,6 +8,6 @@ class Subscriber < ApplicationRecord
   before_create :generate_url
 
   def generate_url
-    self.unique_url = "newsletters.com/#{('a'..'z').to_a.shuffle[0,5].join}"
+    self.unique_url = "#{('a'..'z').to_a.shuffle[0,5].join}"
   end
 end

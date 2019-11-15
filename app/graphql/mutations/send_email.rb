@@ -46,10 +46,14 @@ module Mutations
       email.newsletter.subscribers.each do |subscriber|
         puts "To: #{subscriber.name},"
         puts "#{email.content}"
+        puts "To unsubscribe, please visit www.#{email.newsletter.name}/#{subscriber.unique_url}"
+        puts ""
 
         email_recipients << subscriber.name
         email_sent_counter += 1
       end
+
+      # create new emailsent object to track emails sent
 
       EmailSent.create!(
         user_id: context[:current_user].id,
@@ -75,9 +79,19 @@ module Mutations
       subscribers.each do |subscriber|
         puts "To: #{subscriber.name},"
         puts "#{content}"
+        puts "To unsubscribe, please visit www.#{email.newsletter.name}/#{subscriber.unique_url}"
+        puts ""
 
         email_sent_counter += 1
       end
+
+      # create new emailsent object to track emails sent
+
+      EmailSent.create!(
+        user_id: context[:current_user].id,
+        email_id: email.id,
+        custom_email: true
+        )
 
       @@emails_sent = "#{email_sent_counter} email(s) sent to your subscribers (#{subscribers.pluck(:name).join(', ')})"
     end

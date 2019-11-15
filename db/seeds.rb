@@ -71,4 +71,14 @@ end
   )
 end
 
+# have to manually generate subtrackers because the callback method sets all the date to today's date
+
+50.times do
+  SubTracker.create!(
+    newsletter_id: 1,
+    created_at: rand(7.days.ago..Time.now),
+    action: "subscribe"
+    )
+end
+
 puts "Database seeded!"

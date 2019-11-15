@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_14_093533) do
+ActiveRecord::Schema.define(version: 2019_11_15_061123) do
 
   create_table "email_sents", force: :cascade do |t|
     t.integer "user_id"
@@ -34,6 +34,13 @@ ActiveRecord::Schema.define(version: 2019_11_14_093533) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
     t.index ["user_id"], name: "index_newsletters_on_user_id"
+  end
+
+  create_table "sub_trackers", force: :cascade do |t|
+    t.integer "newsletter_id"
+    t.string "action"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "subscribers", force: :cascade do |t|

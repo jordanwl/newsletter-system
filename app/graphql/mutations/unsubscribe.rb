@@ -24,6 +24,14 @@ module Mutations
       return GraphQL::ExecutionError.new("invalid newletter (not subscribed to / does not exist)") if subscription.nil?
 
       subscription.destroy!
+
+      # create new subtracker object to track subs
+
+      # SubTracker.create!(
+      #   subscriber_id: subscriber.id,
+      #   newsletter_id: newsletter_id,
+      #   action: "unsubscribe")
+
       subscription
     end
   end

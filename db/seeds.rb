@@ -45,6 +45,7 @@ end
     )
 end
 
+# generates 20 emailsent (days)
 20.times do
   EmailSent.create!(
     user_id: User.first.id,
@@ -54,6 +55,7 @@ end
   )
 end
 
+# generates 20 emailsent for 2nd newsletter (days)
 20.times do
   EmailSent.create!(
     user_id: User.first.id,
@@ -63,7 +65,7 @@ end
   )
 end
 
-
+# generates 20 emailsent custom email (days)
 20.times do
   EmailSent.create!(
     user_id: User.first.id,
@@ -72,6 +74,7 @@ end
   )
 end
 
+# generates 20 emailsent(weeks)
 20.times do
   EmailSent.create!(
     user_id: User.first.id,
@@ -81,6 +84,7 @@ end
   )
 end
 
+# generates 20 emailsent (month)
 20.times do
   EmailSent.create!(
     user_id: User.first.id,
@@ -90,6 +94,7 @@ end
   )
 end
 
+# generates 20 emailsent(year)
 20.times do
   EmailSent.create!(
     user_id: User.first.id,
@@ -99,6 +104,7 @@ end
   )
 end
 
+# generates 5 emailsent (today)
 5.times do
   EmailSent.create!(
     user_id: User.first.id,

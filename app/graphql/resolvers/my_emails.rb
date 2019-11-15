@@ -9,11 +9,11 @@ module Resolvers
     def resolve(pagination: {offset: 0, limit: 5})
       logged_in_check
 
-      emails = context[:current_user].emails
+      emails = context[:current_user].emails.offset(pagination[:offset]).limit(pagination[:limit])
 
       return GraphQL::ExecutionError.new("you have no newsletters") if emails.empty?
 
-      emails[pagination[:offset],pagination[:limit]]
+      emails
     end
   end
 end

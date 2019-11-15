@@ -6,14 +6,14 @@ module Resolvers
 
     type [Types::NewsletterType], null: false
 
-    def resolve(pagination: {offset: 0, limit: 5})
+    def resolve(pagination: {offset: 0, limit: 3})
       logged_in_check
 
-      newsletters = context[:current_user].newsletters
+      newsletters = context[:current_user].newsletters.offset(pagination[:offset]).limit(pagination[:limit])
 
       return GraphQL::ExecutionError.new("you have no newsletters") if newsletters.empty?
 
-      newsletters[pagination[:offset],pagination[:limit]]
+      newsletters
     end
   end
 end

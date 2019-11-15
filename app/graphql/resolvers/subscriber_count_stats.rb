@@ -59,6 +59,7 @@ module Resolvers
         else
           return GraphQL::ExecutionError.new("please select a stats filter")
       end
+      # return all subscriber stats or stats for specified newsletter
       newsletter_id.nil? ? sub_count_stats : sub_count_stats["#{newsletter.name}, id: #{newsletter.id}"]
     end
   end

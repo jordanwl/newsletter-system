@@ -11,13 +11,15 @@ module Resolvers
 
       subscribers = []
 
-      context[:current_user].newsletters.each do |newsletter|
-        subscribers << newsletter.subscribers
-      end
+      newsletter_ids = context[:current_user].newsletters.pluck(:id)
+
+      subscriber_ids = Subscription.where(newsletter_id: newsletter_ids).distinct.offset(pagination[:offset]).limit(pagination[:limit])
+
+      subscribers = Subscriber.where(id: subscriber_ids)
 
       return GraphQL::ExecutionError.new("you have no subscribers") if subscribers.empty?
 
-      subscribers.flatten.uniq[pagination[:offset],pagination[:limit]]
+      subscribers
     end
   end
 end

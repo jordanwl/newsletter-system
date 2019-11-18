@@ -105,7 +105,7 @@ module Resolvers
             sub_count_stats["#{newsletter.name}, id: #{newsletter.id}"] = {}
 
             date_range.each do |date|
-              subs_within_range =  SubTracker.where(newsletter_id: newsletter.id, created_at: date_range).group_by_day(:created_at)
+              subs_within_range =  SubTracker.where(newsletter_id: newsletter.id, created_at: date)
 
               subs = subs_within_range.where(action: "subscribe").count
 

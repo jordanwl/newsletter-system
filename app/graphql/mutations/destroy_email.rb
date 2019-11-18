@@ -5,10 +5,10 @@ module Mutations
 
     type Types::EmailType
 
-    def resolve(email_id: nil, newsletter_id: nil)
+    def resolve(email_id: nil)
       logged_in_check
 
-      email = Email.find_by(id: email_id, newsletter_id: newsletter_id)
+      email = Email.find_by(id: email_id)
 
       return GraphQL::ExecutionError.new("invalid email_id (not yours/not created)") if email.nil? || !context[:current_user].emails.include?(email)
 

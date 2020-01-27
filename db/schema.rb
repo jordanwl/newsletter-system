@@ -13,11 +13,13 @@
 ActiveRecord::Schema.define(version: 2019_11_15_061123) do
 
   create_table "email_sents", force: :cascade do |t|
+    t.boolean "custom_email"
     t.integer "user_id"
     t.integer "email_id"
-    t.boolean "custom_email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["email_id"], name: "index_email_sents_on_email_id"
+    t.index ["user_id"], name: "index_email_sents_on_user_id"
   end
 
   create_table "emails", force: :cascade do |t|
@@ -68,6 +70,8 @@ ActiveRecord::Schema.define(version: 2019_11_15_061123) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "email_sents", "emails"
+  add_foreign_key "email_sents", "users"
   add_foreign_key "emails", "newsletters"
   add_foreign_key "newsletters", "users"
   add_foreign_key "subscriptions", "newsletters"

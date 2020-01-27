@@ -9,26 +9,39 @@ module Resolvers
     def resolve(stats_filter: nil)
       logged_in_check
 
+      date_range = 6.downto(0)
+      emails_sent_stats = {}
+
       case stats_filter
         when "DAYS"
-          date_range = ((Date.today - 1.week + 1.day)..Date.today.end_of_day)
+          date_range.each do |date|
+            count = EmailSent.where("custom_email = ? AND created_at < ? AND user_id = ?", true, date.days.ago, context[:current_user].id).count
 
-          EmailSent.where(created_at: date_range, user_id: context[:current_user].id, custom_email: true).group_by_day(:created_at).count
+            emails_sent_stats[date.days.ago] = count
+          end
         when "WEEKS"
-          date_range = ((Date.today - 7.weeks)..Date.today.end_of_day)
+          date_range.each do |date|
+            count = EmailSent.where("custom_email = ? AND created_at < ? AND user_id = ?", true, date.days.ago, context[:current_user].id).count
 
-          EmailSent.where(created_at: date_range, user_id: context[:current_user].id, custom_email: true).group_by_week(:created_at).count
+            emails_sent_stats[date.days.ago] = count
+          end
+
         when "MONTHS"
-          date_range = ((Date.today - 7.months)..Date.today.end_of_day)
+          date_range.each do |date|
+            count = EmailSent.where("custom_email = ? AND created_at < ? AND user_id = ?", true, date.days.ago, context[:current_user].id).count
 
-          EmailSent.where(created_at: date_range, user_id: context[:current_user].id, custom_email: true).group_by_month(:created_at).count
+            emails_sent_stats[date.days.ago] = count
+          end
         when "YEARS"
-          date_range = ((Date.today - 7.years)..Date.today.end_of_day)
+         date_range.each do |date|
+           count = EmailSent.where("custom_email = ? AND created_at < ? AND user_id = ?", true, date.days.ago, context[:current_user].id).count
 
-          EmailSent.where(created_at: date_range, user_id: context[:current_user].id, custom_email: true).group_by_year(:created_at).count
+           emails_sent_stats[date.days.ago] = count
+          end
         else
           return GraphQL::ExecutionError.new("please select a stats filter")
       end
+      emails_sent_stats
     end
   end
 end

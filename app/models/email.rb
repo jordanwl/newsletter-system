@@ -1,6 +1,6 @@
 class Email < ApplicationRecord
   belongs_to :newsletter
+  has_many :email_sents
 
-  serialize :times_sent, Array
   validates :content, presence: true
 end

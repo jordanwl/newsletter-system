@@ -2,10 +2,10 @@
   <div class="container">
     <h4 v-if="loading">Loading...</h4>
 
-    <div v-for="email in myEmails" :key="email.id" class="card">
-      <div class="card-header">
+    <div v-for="email in myEmails" :key="email.id" class="card m-2">
+      <h5 class="card-header">
         {{ email.newsletter.name }}
-      </div>
+      </h5>
       <div class="card-body">
         <blockquote class="blockquote mb-0">
           <p> {{ email.content }} </p>

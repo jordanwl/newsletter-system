@@ -11,16 +11,15 @@
 </template>
 
 <script>
-import { SIGN_IN_MUTATION } from '@/constants/graphql.js'
-// import onLogin from '@/vue-apollo.js'
+import { SIGN_IN_MUTATION } from '../constants/graphql'
+import { onLogin } from '../vue-apollo.js'
 
 export default {
   name: 'SignIn',
   data () {
     return {
-      token: '',
-      email: '',
-      password: ''
+      email: 'jordan1@test.com',
+      password: 'password'
     }
   },
   methods: {
@@ -32,7 +31,9 @@ export default {
           password: this.password
         }
       }).then(data => {
-        localStorage.setItem('token', data['data']['signinUser']['token'])
+        onLogin(this.$apollo.provider.defaultClient, data['data']['signinUser']['token'])
+        this.$emit('loggedIn')
+        this.$router.push('/')
       })
     }
   }

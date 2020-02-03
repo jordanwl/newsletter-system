@@ -1,13 +1,14 @@
 import Vue from 'vue'
 import VueApollo from 'vue-apollo'
-import { HttpLink } from 'apollo-link-http'
+import { ApolloLink } from 'apollo-link'
+// import { HttpLink } from 'apollo-link-http'
 import { createApolloClient, restartWebsockets } from 'vue-cli-plugin-apollo/graphql-client'
 
 // Install the vue plugin
 Vue.use(VueApollo)
 
 // Name of the localStorage item
-const AUTH_TOKEN = 'apollo-token'
+const AUTH_TOKEN = 'token'
 
 // Http endpoint
 const httpEndpoint = process.env.VUE_APP_GRAPHQL_HTTP || 'http://localhost:4000/graphql'
@@ -15,12 +16,6 @@ const httpEndpoint = process.env.VUE_APP_GRAPHQL_HTTP || 'http://localhost:4000/
 export const filesRoot = process.env.VUE_APP_FILES_ROOT || httpEndpoint.substr(0, httpEndpoint.indexOf('/graphql'))
 
 Vue.prototype.$filesRoot = filesRoot
-
-const myLink = new HttpLink({
-  uri: 'http://localhost:4000/graphql',
-  fetch,
-  headers: { token: localStorage.getItem('token') }
-})
 
 // Config
 const defaultOptions = {
@@ -38,12 +33,12 @@ const defaultOptions = {
   // You need to pass a `wsEndpoint` for this to work
   websocketsOnly: false,
   // Is being rendered on the server?
-  ssr: false,
+  ssr: false
 
   // Override default apollo link
   // note: don't override httpLink here, specify httpLink options in the
   // httpLinkOptions property of defaultOptions.
-  link: myLink
+  // link: myLink
 
   // Override default cache
   // cache: myCache
@@ -58,12 +53,27 @@ const defaultOptions = {
   // clientState: { resolvers: { ... }, defaults: { ... } }
 }
 
+const authLink = new ApolloLink((operation, forward) => {
+  if (localStorage.getItem(AUTH_TOKEN)) {
+    operation.setContext({
+      headers: {
+        'token': localStorage.getItem(AUTH_TOKEN)
+      }
+    })
+  }
+  if (forward) {
+    return forward(operation)
+  }
+  return null
+})
+
 // Call this in the Vue app file
 export function createProvider (options = {}) {
   // Create apollo client
   const { apolloClient, wsClient } = createApolloClient({
     ...defaultOptions,
-    ...options
+    ...options,
+    link: authLink
   })
   apolloClient.wsClient = wsClient
 

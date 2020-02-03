@@ -17,10 +17,9 @@
 </template>
 
 <script>
-import { MY_EMAILS_QUERY } from '@/constants/graphql.js'
+import { MY_EMAILS_QUERY } from '../constants/graphql'
 
 export default {
-  name: 'EmailList',
   data () {
     return {
       myEmails: [],

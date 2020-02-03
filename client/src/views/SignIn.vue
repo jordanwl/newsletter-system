@@ -32,7 +32,7 @@ export default {
         }
       }).then(data => {
         onLogin(this.$apollo.provider.defaultClient, data['data']['signinUser']['token'])
-        this.$emit('loggedIn')
+        this.$store.commit('setLoggedIn', true)
         this.$router.push('/')
       })
     }

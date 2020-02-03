@@ -6,23 +6,20 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'home',
     component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue'),
     meta: {
       requiresAuth: true
     }
   },
   {
-    path: '/about',
-    name: 'about',
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+    path: '/new',
+    component: () => import(/* webpackChunkName: "about" */ '../views/NewEmail.vue'),
     meta: {
       requiresAuth: true
     }
   },
   {
     path: '/signin',
-    name: 'signin',
     component: () => import(/* webpackChunkName: "signin" */ '../views/SignIn.vue'),
     meta: {
       guest: true

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_15_061123) do
+ActiveRecord::Schema.define(version: 2020_02_03_081447) do
 
   create_table "email_sents", force: :cascade do |t|
     t.boolean "custom_email"
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 2019_11_15_061123) do
     t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "bio"
   end
 
   add_foreign_key "email_sents", "emails"

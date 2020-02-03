@@ -1,8 +1,11 @@
 <template>
-  <div class="container">
-    <h4 v-if="loading">Loading...</h4>
-    <div>{{ currentUser.id }}</div>
-    <div>{{ currentUser.username }}</div>
+  <div class="card mb-3">
+    <div class="card-header bg-dark ">
+      <h4 class="card-title text-white"> {{ currentUser.username }}</h4>
+    </div>
+    <div class="card-body">
+      <p class="card-text">{{ currentUser.bio }}</p>
+    </div>
   </div>
 </template>
 

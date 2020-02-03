@@ -2,7 +2,8 @@
   User.create!(
     username: "jordan#{number}",
     email: "jordan#{number}@test.com",
-    password: "password"
+    password: "password",
+    bio: Faker::Lorem.paragraph(sentence_count: 15)
     )
 end
 
@@ -26,7 +27,7 @@ end
   Newsletter.all.each do |newsletter|
     Email.create!(
       newsletter: newsletter,
-      content: "Congrats! You've won $#{number}!"
+      content: Faker::Quotes::Shakespeare.romeo_and_juliet_quote
       )
   end
 end
@@ -62,17 +63,17 @@ end
   )
 end
 
-# generates 1000 emailsent custom email
-100.times do
+# generates 50 emailsent custom email
+50.times do
   EmailSent.create!(
     user_id: User.first.id,
+    email_id: User.first.emails[1].id,
     custom_email: true,
     created_at: rand(7.years.ago..Time.now)
   )
 end
 
 # have to manually generate subtrackers because the callback method sets all the date to today's date
-
 50.times do
   SubTracker.create!(
     newsletter_id: 1,

@@ -1,7 +1,5 @@
 <template>
-  <div class="container">
-    <h4 v-if="loading">Loading...</h4>
-
+  <div>
     <div v-for="email in myEmails" :key="email.id" class="card m-2">
       <h5 class="card-header">
         {{ email.newsletter.name }}
@@ -22,8 +20,7 @@ import { MY_EMAILS_QUERY } from '../constants/graphql'
 export default {
   data () {
     return {
-      myEmails: [],
-      loading: 0
+      myEmails: []
     }
   },
   apollo: {

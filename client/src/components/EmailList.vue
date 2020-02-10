@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-for="email in myEmails" :key="email.id" class="card m-2">
+    <div v-for="email in myEmails" :key="email.id" class="card card-spacer">
       <h5 class="card-header">
         {{ email.newsletter.name }}
       </h5>
@@ -30,3 +30,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.card-spacer:not(:first-child) {
+  margin-top: .5rem;
+}
+</style>

@@ -2,14 +2,12 @@ module Resolvers
   class MyEmails < BaseResolver
     description "Returns a user newsletters"
 
-    argument :pagination, Types::Pagination, required: false
-
     type [Types::EmailType], null: false
 
-    def resolve(pagination: {offset: 0, limit: 5})
+    def resolve
       logged_in_check
 
-      emails = context[:current_user].emails.offset(pagination[:offset]).limit(pagination[:limit])
+      emails = context[:current_user].emails.order(created_at: :desc).limit(5)
 
       return GraphQL::ExecutionError.new("you have no newsletters") if emails.empty?
 

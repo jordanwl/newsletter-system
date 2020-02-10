@@ -1,9 +1,18 @@
 <template>
-  <div>
+  <div class="container bg-light border border-dark rounded pt-3">
     <form @submit.prevent="newEmail()">
-      <input v-model="newsletterId" placeholder="newsletterId">
-      <input v-model="content">
-      <input type="submit" value="Submit">
+      <div class="form-group">
+        <label for="newsletterId">Newsletter ID</label>
+        <input v-model="newsletterId" class="form-control" aria-describedby="newsletterHelp" placeholder="Newsletter ID">
+        <small id="newsletterHelp" class="form-text text-muted">Please enter a newsletter ID</small>
+      </div>
+
+      <div class="form-group">
+        <label for="content">Content</label>
+        <textarea v-model="content" class="form-control" aria-describedby="contentHelp" placeholder="Content" rows="5"/>
+        <small id="contentHelp" class="form-text text-muted">Please enter your email content</small>
+      </div>
+      <button type="submit" class="btn btn-dark">Submit</button>
     </form>
     <p>{{ newsletterId }}</p>
     <p>{{ content }}</p>

@@ -1,13 +1,17 @@
 <template>
-  <div class="d-flex">
+  <div class="container">
     <div class="row">
       <email-list class="col-md-8 col-sm-12"></email-list>
-      <profile class="col-4 d-none d-md-block"></profile>
+      <div class="col-4">
+        <profile class="d-none d-md-block"></profile>
+        <create-email class="mt-3"></create-email>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import CreateEmail from '../components/NewEmailForm.vue'
 import EmailList from '../components/EmailList.vue'
 import { onLogout } from '../vue-apollo.js'
 import Profile from '../components/Profile.vue'
@@ -15,6 +19,7 @@ import Profile from '../components/Profile.vue'
 export default {
   name: 'home',
   components: {
+    CreateEmail,
     EmailList,
     Profile
   },

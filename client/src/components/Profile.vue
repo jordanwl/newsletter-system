@@ -1,6 +1,6 @@
 <template>
-  <div class="card mb-3">
-    <div class="card-header bg-dark">
+  <div class="card">
+    <div class="card-header pb-0 bg-dark">
       <h4 class="card-title text-white"> {{ currentUser.username }}</h4>
     </div>
     <div class="card-body">

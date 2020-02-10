@@ -1,7 +1,8 @@
 <template>
   <div class="card">
-    <div class="card-header pb-0 bg-dark">
-      <h4 class="card-title text-white"> {{ currentUser.username }}</h4>
+    <div class="card-header p-1 bg-dark border d-flex justify-content-between">
+      <h4 class="card-title text-white pt-2 pl-2"> {{ currentUser.username }}</h4>
+      <img src="../assets/yoshi.png" class="rounded-circle" style="width:45px" alt="">
     </div>
     <div class="card-body">
       <p class="card-text">{{ currentUser.bio }}</p>

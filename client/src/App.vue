@@ -16,3 +16,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.card-spacer:not(:first-child) {
+  margin-top: .5rem;
+}
+</style>

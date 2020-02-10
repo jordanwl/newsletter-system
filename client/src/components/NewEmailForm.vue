@@ -1,12 +1,11 @@
 <template>
-  <div class="container bg-light border border-dark rounded pt-3">
+  <div class="container bg-light border rounded py-3">
     <form @submit.prevent="newEmail()">
       <div class="form-group">
         <label for="newsletterId">Newsletter ID</label>
         <input v-model="newsletterId" class="form-control" aria-describedby="newsletterHelp" placeholder="Newsletter ID">
         <small id="newsletterHelp" class="form-text text-muted">Please enter a newsletter ID</small>
       </div>
-
       <div class="form-group">
         <label for="content">Content</label>
         <textarea v-model="content" class="form-control" aria-describedby="contentHelp" placeholder="Content" rows="5"/>
@@ -14,8 +13,6 @@
       </div>
       <button type="submit" class="btn btn-dark">Submit</button>
     </form>
-    <p>{{ newsletterId }}</p>
-    <p>{{ content }}</p>
   </div>
 </template>
 
@@ -37,6 +34,8 @@ export default {
           newsletterId: this.newsletterId,
           content: this.content
         }
+      }).then(() => {
+        this.$emit('newEmail')
       })
     }
   }

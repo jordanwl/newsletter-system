@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-for="email in myEmails" :key="email.id" class="card card-spacer">
-      <h5 class="card-header">
+      <h5 class="card-header border">
         {{ email.newsletter.name }}
       </h5>
       <div class="card-body">

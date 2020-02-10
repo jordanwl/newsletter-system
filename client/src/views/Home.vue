@@ -1,7 +1,9 @@
 <template>
-  <div>
-    <profile></profile>
-    <email-list></email-list>
+  <div class="d-flex">
+    <div class="row">
+      <email-list class="col-md-8 col-sm-12"></email-list>
+      <profile class="col-4 d-none d-md-block"></profile>
+    </div>
   </div>
 </template>
 

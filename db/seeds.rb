@@ -27,7 +27,7 @@ end
   Newsletter.all.each do |newsletter|
     Email.create!(
       newsletter: newsletter,
-      content: Faker::Quotes::Shakespeare.romeo_and_juliet_quote
+      content: Faker::TvShows::GameOfThrones.
       )
   end
 end

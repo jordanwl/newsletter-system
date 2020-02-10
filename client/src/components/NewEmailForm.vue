@@ -1,40 +1,33 @@
-// TO DO NEXT: WRITE CREATE MUTATION TO
-
 <template>
   <div>
     <form @submit.prevent="newEmail()">
-      <input v-model="email" placeholder="jordan1@test.com">
-      <input v-model="password" placeholder="password">
+      <input v-model="newsletterId" placeholder="newsletterId">
+      <input v-model="content">
       <input type="submit" value="Submit">
     </form>
-    <p>{{ email }}</p>
-    <p>{{ password }}</p>
+    <p>{{ newsletterId }}</p>
+    <p>{{ content }}</p>
   </div>
 </template>
 
 <script>
-import { SIGN_IN_MUTATION } from '../constants/graphql'
-import { onLogin } from '../vue-apollo.js'
+import { CREATE_EMAIL_MUTATION } from '../constants/graphql'
 
 export default {
   data () {
     return {
-      email: 'jordan1@test.com',
-      password: 'password'
+      newsletterId: '',
+      content: ''
     }
   },
   methods: {
     newEmail: function () {
       this.$apollo.mutate({
-        mutation: SIGN_IN_MUTATION,
+        mutation: CREATE_EMAIL_MUTATION,
         variables: {
-          email: this.email,
-          password: this.password
+          newsletterId: this.newsletterId,
+          content: this.content
         }
-      }).then(data => {
-        onLogin(this.$apollo.provider.defaultClient, data['data']['signinUser']['token'])
-        this.$store.commit('setLoggedIn', true)
-        this.$router.push('/')
       })
     }
   }

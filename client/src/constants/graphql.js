@@ -36,3 +36,23 @@ export const SIGN_IN_MUTATION = gql`
     }
   }
 `
+
+export const CREATE_EMAIL_MUTATION = gql`
+  mutation createEmail($newsletterId: ID!, $content: String!) {
+    createEmail(newsletterId: $newsletterId, content: $content)
+    {
+      id
+      content
+      newsletter {
+        id
+        name
+        user {
+          id
+          username
+          email
+          bio
+        }
+      }
+    }
+  }
+`

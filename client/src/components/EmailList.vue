@@ -1,9 +1,7 @@
 <template>
   <div>
     <div v-for="email in myEmails" :key="email.id" class="card card-spacer">
-      <h5 class="card-header border">
-        {{email.newsletter.id}}. {{ email.newsletter.name }}
-      </h5>
+      <h5 class="card-header border">{{ email.newsletter.name }}</h5>
       <div class="card-body">
         <blockquote class="blockquote mb-0">
           <p> {{ email.content }} </p>
@@ -20,7 +18,8 @@ import { MY_EMAILS_QUERY } from '../constants/graphql'
 export default {
   data () {
     return {
-      myEmails: []
+      myEmails: [],
+      newsletterId: ''
     }
   },
   apollo: {
@@ -30,13 +29,21 @@ export default {
   },
   methods: {
     refresh () {
-      this.$apollo.queries.myEmails.refetch()
+      this.$apollo.queries.myEmails.refetch(
+        { newsletterId: this.newsletterId }
+      )
+    },
+    filter (value) {
+      this.newsletterId = value
+      this.refresh()
     }
   },
   mounted () {
+    this.$root.$on('filter', this.filter)
     this.$root.$on('new-email', this.refresh)
   },
   destroyed () {
+    this.$root.$off('filter', this.filter)
     this.$root.$off('new-email', this.refresh)
   }
 }

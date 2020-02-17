@@ -1,6 +1,9 @@
 <template>
-  <div class="container bg-light border rounded py-3">
-    <form @submit.prevent="newEmail()">
+  <div class="bg-light border rounded">
+    <div class="card-header p-1 bg-dark border d-flex justify-content-between">
+      <h5 class="card-title text-white pt-2 pl-2">New Post</h5>
+    </div>
+    <form @submit.prevent="newEmail()" class="container py-3">
       <div class="form-group">
         <label for="newsletterId">Newsletter ID</label>
         <input v-model="newsletterId" class="form-control" aria-describedby="newsletterHelp" placeholder="Newsletter ID">

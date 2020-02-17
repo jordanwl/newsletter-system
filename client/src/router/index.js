@@ -6,6 +6,7 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
+    name: 'home',
     component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue'),
     meta: {
       requiresAuth: true
@@ -13,6 +14,7 @@ const routes = [
   },
   {
     path: '/new',
+    name: 'new',
     component: () => import(/* webpackChunkName: "about" */ '../views/NewEmail.vue'),
     meta: {
       requiresAuth: true
@@ -20,6 +22,7 @@ const routes = [
   },
   {
     path: '/signin',
+    name: 'signin',
     component: () => import(/* webpackChunkName: "signin" */ '../views/SignIn.vue'),
     meta: {
       guest: true
@@ -50,7 +53,7 @@ router.beforeEach((to, from, next) => {
       next({ name: 'home' })
     }
   } else {
-    next()
+    next({ name: 'signin' })
   }
 })
 

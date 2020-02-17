@@ -2,7 +2,7 @@ module Resolvers
   class MyNewsletters < BaseResolver
     description "Returns a user newsletters"
 
-   argument :pagination, Types::Pagination, required: false
+    argument :pagination, Types::Pagination, required: false
 
     type [Types::NewsletterType], null: false
 

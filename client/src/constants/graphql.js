@@ -12,8 +12,8 @@ export const CURRENT_USER_QUERY = gql`
 `
 
 export const MY_EMAILS_QUERY = gql`
-  query myEmails {
-    myEmails {
+  query myEmails($newsletterId: ID) {
+    myEmails(newsletterId: $newsletterId) {
     id
     content
       newsletter {
@@ -24,6 +24,21 @@ export const MY_EMAILS_QUERY = gql`
           id
           username
         }
+      }
+    }
+  }
+`
+
+export const MY_NEWSLETTERS_QUERY = gql`
+  query myNewsletters {
+    myNewsletters {
+      id
+      name
+      user {
+        bio
+        email
+        id
+        username
       }
     }
   }

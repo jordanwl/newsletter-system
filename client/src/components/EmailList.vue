@@ -2,7 +2,7 @@
   <div>
     <div v-for="email in myEmails" :key="email.id" class="card card-spacer">
       <h5 class="card-header border">
-        {{ email.newsletter.name }}
+        {{email.newsletter.id}}. {{ email.newsletter.name }}
       </h5>
       <div class="card-body">
         <blockquote class="blockquote mb-0">
@@ -27,6 +27,17 @@ export default {
     myEmails: {
       query: MY_EMAILS_QUERY
     }
+  },
+  methods: {
+    refresh () {
+      this.$apollo.queries.myEmails.refetch()
+    }
+  },
+  mounted () {
+    this.$root.$on('new-email', this.refresh)
+  },
+  destroyed () {
+    this.$root.$off('new-email', this.refresh)
   }
 }
 </script>

@@ -35,7 +35,9 @@ export default {
           content: this.content
         }
       }).then(() => {
-        this.$emit('newEmail')
+        this.$root.$emit('new-email')
+        this.newsletterId = ''
+        this.content = ''
       })
     }
   }

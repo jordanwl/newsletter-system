@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class=" container w-75">
     <new-email-form></new-email-form>
   </div>
 </template>
@@ -12,7 +12,3 @@ export default {
   }
 }
 </script>
-
-<style>
-
-</style>

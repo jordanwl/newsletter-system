@@ -1,41 +1,14 @@
 <template>
   <div>
-    <form @submit.prevent="signIn()">
-      <input v-model="email">
-      <input v-model="password">
-      <input type="submit" value="Submit">
-    </form>
-    <p>{{ email }}</p>
-    <p>{{ password }}</p>
+    <sign-in-form></sign-in-form>
   </div>
 </template>
 
 <script>
-import { SIGN_IN_MUTATION } from '../constants/graphql'
-import { onLogin } from '../vue-apollo.js'
-
+import SignInForm from '../components/SignInForm.vue'
 export default {
-  name: 'SignIn',
-  data () {
-    return {
-      email: 'jordan1@test.com',
-      password: 'password'
-    }
-  },
-  methods: {
-    signIn: function () {
-      this.$apollo.mutate({
-        mutation: SIGN_IN_MUTATION,
-        variables: {
-          email: this.email,
-          password: this.password
-        }
-      }).then(data => {
-        onLogin(this.$apollo.provider.defaultClient, data['data']['signinUser']['token'])
-        this.$store.commit('setLoggedIn', true)
-        this.$router.push('/')
-      })
-    }
+  components: {
+    SignInForm
   }
 }
 </script>

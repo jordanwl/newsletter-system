@@ -11,7 +11,7 @@
           <router-link class="nav-link text-white" to="/">Home</router-link>
         </li>
         <li class="nav-item active">
-          <router-link class="nav-link text-white" to="/new">New Email</router-link>
+          <router-link class="nav-link text-white" to="/video">VideoChat</router-link>
         </li>
       </ul>
       <div>

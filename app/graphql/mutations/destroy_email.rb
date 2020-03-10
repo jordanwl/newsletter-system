@@ -1,7 +1,6 @@
 module Mutations
   class DestroyEmail < BaseMutation
     argument :email_id, ID, required: true
-    argument :newsletter_id, ID, required: true
 
     type Types::EmailType
 

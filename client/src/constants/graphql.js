@@ -71,3 +71,21 @@ export const CREATE_EMAIL_MUTATION = gql`
     }
   }
 `
+
+export const DESTROY_EMAIL_MUTATION = gql`
+  mutation destroyEmail($emailId: ID!) {
+    destroyEmail(emailId: $emailId) {
+      id
+      content
+      newsletter {
+        id
+        name
+        user {
+          email
+          id
+          username
+        }
+      }
+    }
+  }
+`

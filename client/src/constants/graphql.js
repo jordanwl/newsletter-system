@@ -89,3 +89,21 @@ export const DESTROY_EMAIL_MUTATION = gql`
     }
   }
 `
+
+export const EDIT_EMAIL_MUTATION = gql`
+  mutation editEmail($emailId: ID!, $content: String!) {
+    editEmail(emailId: $emailId, content: $content) {
+      id
+      content
+      newsletter {
+        id
+        name
+        user {
+          email
+          id
+          username
+        }
+      }
+    }
+  }
+`

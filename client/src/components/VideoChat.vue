@@ -3,6 +3,7 @@
     <div class="card-body">
       <div id="videos">
         <div id="publisher"></div>
+        <div id="subscriber"></div>
       </div>
       <h5 class="card-title">Video Chat</h5>
       <p class="card-text">Welcome to the Video Chat page!</p>
@@ -25,8 +26,8 @@ export default {
     return {
       selected: '',
       apiKey: '46531702',
-      sessionId: '2_MX40NjUzMTcwMn5-MTU4MzcyMTIzNjE3NX5VOUk1TXlQK1FSc21vRFUzUGdGUTlYVjJ-fg',
-      token: 'T1==cGFydG5lcl9pZD00NjUzMTcwMiZzaWc9NDI3MjliZDA4NTYwYTU1YTY2MDU3YjNiZTk1MjM4NWU0ZTAxMzUzODpzZXNzaW9uX2lkPTJfTVg0ME5qVXpNVGN3TW41LU1UVTRNemN5TVRJek5qRTNOWDVWT1VrMVRYbFFLMUZTYzIxdlJGVXpVR2RHVVRsWVZqSi1mZyZjcmVhdGVfdGltZT0xNTgzNzIxMjg3Jm5vbmNlPTAuNzk5MTc0NzI0MjAxMDgyNSZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNTgzNzI0ODg2JmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9'
+      sessionId: '2_MX40NjUzMTcwMn5-MTU4NDk1MDIxOTEzNH5jYnJiNEI1Z2tHTVMzTnU2cFZMdHpleVB-fg',
+      token: 'T1==cGFydG5lcl9pZD00NjUzMTcwMiZzaWc9ZGU1ZTA1MzBiNTZhZGM1ZjEwMzU2ODMxYjRmY2U3ZTlmM2JiNGVmMjpzZXNzaW9uX2lkPTJfTVg0ME5qVXpNVGN3TW41LU1UVTRORGsxTURJeE9URXpOSDVqWW5KaU5FSTFaMnRIVFZNelRuVTJjRlpNZEhwbGVWQi1mZyZjcmVhdGVfdGltZT0xNTg0OTUwMzE3Jm5vbmNlPTAuMjYyMzAwNDgyNTUwNjk5MTUmcm9sZT1wdWJsaXNoZXImZXhwaXJlX3RpbWU9MTU4NzU0MjMxNyZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ=='
     }
   },
   mounted () {

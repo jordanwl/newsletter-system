@@ -9,8 +9,6 @@ module Mutations
 
       email = Email.find_by(id: email_id)
 
-      return GraphQL::ExecutionError.new("invalid email_id (not yours/not created)") if email.nil? || !context[:current_user].emails.include?(email)
-
       email.destroy!
     end
   end

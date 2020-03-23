@@ -10,10 +10,6 @@ module Mutations
 
       email = Email.find_by(id: email_id)
 
-      email_ownership_check = context[:current_user].emails.pluck(:id).include?(email_id.to_i)
-
-      return GraphQL::ExecutionError.new("invalid email (check if email exists and if it is your email template)") if email.nil? || !email_ownership_check
-
       email.update!(content: content)
       email
 

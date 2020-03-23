@@ -9,24 +9,38 @@
             <footer class="blockquote-footer">
               {{ email.newsletter.user.email }}
             </footer>
-            <a @click="destroyEmail(email.id)">
-              <i class="fa fa-trash" aria-hidden="true" />
-            </a>
+            <div>
+              <a class="mr-2" style="cursor: pointer" @click="showEdit(email.id)">
+                <i class="fa fa-pen" aria-hidden="true" />
+              </a>
+              <a style="cursor: pointer" @click="destroyEmail(email.id)">
+                <i class="fa fa-trash" aria-hidden="true" />
+              </a>
+            </div>
           </div>
         </blockquote>
+        <div v-if="editEmailId == email.id">
+          <div class="form-group" >
+            <label for="newContent">New content:</label>
+            <textarea class="form-control" id="newContent" v-model="newContent" rows="3"></textarea>
+          </div>
+          <button @click="editEmail" class="btn btn-primary float-right">Submit</button>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { MY_EMAILS_QUERY, DESTROY_EMAIL_MUTATION } from '../constants/graphql'
+import { MY_EMAILS_QUERY, DESTROY_EMAIL_MUTATION, EDIT_EMAIL_MUTATION } from '../constants/graphql'
 
 export default {
   data () {
     return {
       myEmails: [],
-      newsletterId: ''
+      newsletterId: '',
+      editEmailId: '',
+      newContent: ''
     }
   },
   apollo: {
@@ -39,7 +53,6 @@ export default {
       this.$apollo.queries.myEmails.refetch()
     },
     destroyEmail (emailId) {
-      console.log('test')
       this.$apollo.mutate({
         mutation: DESTROY_EMAIL_MUTATION,
         variables: {
@@ -47,6 +60,22 @@ export default {
         }
       })
       this.refetch()
+    },
+    editEmail () {
+      this.$apollo.mutate({
+        mutation: EDIT_EMAIL_MUTATION,
+        variables: {
+          emailId: this.editEmailId,
+          content: this.newContent
+        }
+      }).then(() => {
+        this.refetch()
+        this.editEmailId = ''
+        this.newContent = ''
+      })
+    },
+    showEdit (id) {
+      this.editEmailId = id
     },
     filter (value) {
       this.newsletterId = value
